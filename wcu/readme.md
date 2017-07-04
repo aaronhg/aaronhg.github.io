@@ -1,10 +1,14 @@
 ## 記錄工時
 ### Demo 
   - See [Demo](./demo/)
-  - 先預設工作時間為 08 - 17
+  - 注意：因 loki 多設 unique 所以要先清掉原本的 indexdb
   - () 及 圖示 為可以操作的
-  - 還沒有 設定工作時間、設定 date memo、設定 task memo、設定 record memo 的畫面
-  - 有下載
+  - 已可設定工作時間
+  - 已可添加 memo
+  - 增加 stamp 想法及 action log;在某個時間點並不想細調時間，只想留下一個戳記，之後再來細看及分配
+  - 可直接完成 task 了
+  - redistribution 增加 inputbox 可直接輸入
+  - 有下載 ( 當天 及 全部 )
 
 ### 目的：
 
