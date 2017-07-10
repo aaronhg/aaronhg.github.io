@@ -43760,6 +43760,18 @@ var Main = function (_React$Component) {
                                 "all"
                             );
                         } }),
+                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/export", render: function render() {
+                            return _react2.default.createElement(
+                                "a",
+                                { style: { float: "right" }, onClick: _this3.downloadAll },
+                                _react2.default.createElement(
+                                    _FontIcon2.default,
+                                    { className: "material-icons" },
+                                    "file_download"
+                                ),
+                                "all"
+                            );
+                        } }),
                     _react2.default.createElement(
                         "div",
                         null,
