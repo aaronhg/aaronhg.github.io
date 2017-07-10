@@ -44143,11 +44143,13 @@ var Home = function (_React$Component) {
         _this.state = {
             redistribution: getStat(props)
         };
-        Notification.requestPermission(function (status) {
-            if (Notification.permission !== status) {
-                Notification.permission = status;
-            }
-        });
+        if (Notification) {
+            Notification.requestPermission(function (status) {
+                if (Notification.permission !== status) {
+                    Notification.permission = status;
+                }
+            });
+        }
         return _this;
     }
 
@@ -44423,10 +44425,12 @@ var Notify = function (_React$Component) {
         key: "notification",
         value: function notification() {
             var msg = this.state.reach + " mins reached";
-            if (Notification && Notification.permission === "granted") {
-                new Notification(msg);
-            } else {
-                alert(msg);
+            if (Notification) {
+                if (Notification && Notification.permission === "granted") {
+                    new Notification(msg);
+                } else {
+                    alert(msg);
+                }
             }
         }
     }, {
