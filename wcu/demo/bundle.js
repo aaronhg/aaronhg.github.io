@@ -43675,7 +43675,9 @@ var Main = function (_React$Component) {
 
         _this.saveData = _this.saveData.bind(_this);
         _this.handleRequestClose = _this.handleRequestClose.bind(_this);
-        _this.downloadAll = _this.downloadAll.bind(_this);
+        _this.export = _this.export.bind(_this);
+        _this.import = _this.import.bind(_this);
+        _this.exportText = _this.exportText.bind(_this);
         _this.state = {
             snackbarOpen: false,
             snackbarMessage: ""
@@ -43729,8 +43731,15 @@ var Main = function (_React$Component) {
             });
         }
     }, {
-        key: "downloadAll",
-        value: function downloadAll() {
+        key: "exportText",
+        value: function exportText() {
+            _storage2.default.getAll.then(function (data) {
+                document.body.innerText = JSON.stringify(data);
+            });
+        }
+    }, {
+        key: "export",
+        value: function _export() {
             var store = this.props.store;
             var blob = new Blob([JSON.stringify(store.getState().app.toJS(), function (k, v) {
                 return ~["$loki", "meta"].indexOf(k) ? undefined : v;
@@ -43738,9 +43747,26 @@ var Main = function (_React$Component) {
             (0, _fileSaver.saveAs)(blob, "export.json");
         }
     }, {
+        key: "import",
+        value: function _import() {
+            var _this3 = this;
+
+            var file = document.getElementById("file1");
+            file.onchange = function () {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var text = reader.result;
+                    _storage2.default.clearAll();
+                    _this3.props.store.dispatch((0, _MainRedux.loadData)((0, _immutable.fromJS)(JSON.parse(text))));
+                };
+                reader.readAsText(document.getElementById("file1").files[0]);
+            };
+            file.click();
+        }
+    }, {
         key: "render",
         value: function render() {
-            var _this3 = this;
+            var _this4 = this;
 
             return _react2.default.createElement(
                 _MuiThemeProvider2.default,
@@ -43751,7 +43777,7 @@ var Main = function (_React$Component) {
                     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", render: function render() {
                             return _react2.default.createElement(
                                 "a",
-                                { style: { float: "right" }, onClick: _this3.downloadAll },
+                                { style: { float: "right" }, onClick: _this4.export },
                                 _react2.default.createElement(
                                     _FontIcon2.default,
                                     { className: "material-icons" },
@@ -43763,13 +43789,42 @@ var Main = function (_React$Component) {
                     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/export", render: function render() {
                             return _react2.default.createElement(
                                 "a",
-                                { style: { float: "right" }, onClick: _this3.downloadAll },
+                                { style: { float: "right" }, onClick: _this4.export },
                                 _react2.default.createElement(
                                     _FontIcon2.default,
                                     { className: "material-icons" },
                                     "file_download"
                                 ),
-                                "all"
+                                "export"
+                            );
+                        } }),
+                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/export_text", render: function render() {
+                            return _react2.default.createElement(
+                                "a",
+                                { style: { float: "right" }, onClick: _this4.exportText },
+                                _react2.default.createElement(
+                                    _FontIcon2.default,
+                                    { className: "material-icons" },
+                                    "file_download"
+                                ),
+                                "export text"
+                            );
+                        } }),
+                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/import", render: function render() {
+                            return _react2.default.createElement(
+                                "div",
+                                null,
+                                _react2.default.createElement(
+                                    "a",
+                                    { style: { float: "right" }, onClick: _this4.import },
+                                    _react2.default.createElement(
+                                        _FontIcon2.default,
+                                        { className: "material-icons" },
+                                        "file_upload"
+                                    ),
+                                    "import(will replace data)"
+                                ),
+                                _react2.default.createElement("input", { type: "file", id: "file1", style: { display: "none" } })
                             );
                         } }),
                     _react2.default.createElement(
@@ -45873,12 +45928,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var getAll = _lokijs2.default.getAll; // import indexdb from "./storages/indexdbSimple"
 
 var saveAll = _lokijs2.default.saveAll;
-
+var clearAll = _lokijs2.default.clearAll;
 // setup(setup)
 
 exports.default = {
     getAll: getAll,
-    saveAll: saveAll
+    saveAll: saveAll,
+    clearAll: clearAll
 };
 
 /***/ }),
@@ -45987,8 +46043,8 @@ var getAll = new Promise(function (res, rej) {
     };
     setup.then(fn);
 });
-var saveAll = function () {
-    var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee(prev, data) {
+var clearAll = function () {
+    var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
                 switch (_context.prev = _context.next) {
@@ -45998,14 +46054,41 @@ var saveAll = function () {
 
                     case 2:
                         colls.map(function (coll) {
+                            db.removeCollection(coll);
+                            db.addCollection(coll, { unique: ["id"] });
+                        });
+
+                    case 3:
+                    case 'end':
+                        return _context.stop();
+                }
+            }
+        }, _callee, this);
+    }));
+
+    return function clearAll() {
+        return _ref3.apply(this, arguments);
+    };
+}();
+var saveAll = function () {
+    var _ref4 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(prev, data) {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+            while (1) {
+                switch (_context2.prev = _context2.next) {
+                    case 0:
+                        _context2.next = 2;
+                        return setup;
+
+                    case 2:
+                        colls.map(function (coll) {
                             return [coll, [prev.get(coll), data.get(coll)], db.getCollection(coll)];
-                        }).map(function (_ref4) {
-                            var _ref5 = _slicedToArray(_ref4, 3),
-                                coll = _ref5[0],
-                                _ref5$ = _slicedToArray(_ref5[1], 2),
-                                dp = _ref5$[0],
-                                dn = _ref5$[1],
-                                c = _ref5[2];
+                        }).map(function (_ref5) {
+                            var _ref6 = _slicedToArray(_ref5, 3),
+                                coll = _ref6[0],
+                                _ref6$ = _slicedToArray(_ref6[1], 2),
+                                dp = _ref6$[0],
+                                dn = _ref6$[1],
+                                c = _ref6[2];
 
                             var ds = [];
                             if (coll == "app") {
@@ -46060,19 +46143,20 @@ var saveAll = function () {
 
                     case 4:
                     case 'end':
-                        return _context.stop();
+                        return _context2.stop();
                 }
             }
-        }, _callee, this);
+        }, _callee2, this);
     }));
 
     return function saveAll(_x, _x2) {
-        return _ref3.apply(this, arguments);
+        return _ref4.apply(this, arguments);
     };
 }();
 exports.default = {
     saveAll: saveAll,
-    getAll: getAll
+    getAll: getAll,
+    clearAll: clearAll
 };
 
 /***/ }),
