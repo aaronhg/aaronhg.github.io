@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黃文奇 Aaron Huang — CV</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600;700&family=Google+Sans:wght@400;500;600;700&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #1a1a1a;
+    --ink2: #3a3a3a;
+    --ink3: #777;
+    --ink-faint: #999;
+    --paper: #fafaf8;
+    --rule: #d4d0c8;
+    --accent: #8b4513;
+    --tag-bg: transparent;
+    --tag-border: var(--rule);
+    --sidebar-w: 140px;
+    --gap: 40px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #ede9e4;
+      --ink2: #d5d0c9;
+      --ink3: #a8a29a;
+      --ink-faint: #8a8480;
+      --paper: #1a1917;
+      --rule: #3a3530;
+      --accent: #d4a06a;
+      --tag-bg: rgba(212, 160, 106, 0.08);
+      --tag-border: #504a42;
+    }
+  }
+
+  html { font-size: 18px; }
+
+  body {
+    font-family: "Google Sans Flex", "Google Sans", "Helvetica Neue", sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 72px 48px 100px;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 24px;
+    border-bottom: 1.5px solid var(--ink);
+    margin-bottom: 48px;
+  }
+
+  h1 {
+    font-family: "Google Sans Flex", "Google Sans", "Helvetica Neue", sans-serif;
+    font-weight: 600;
+    font-size: 1.9rem;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+
+  .contact {
+    font-size: 0.82rem;
+    color: var(--ink3);
+    text-align: right;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+
+  .row {
+    display: flex;
+    gap: var(--gap);
+    margin-bottom: 40px;
+  }
+
+  .label {
+    flex: 0 0 var(--sidebar-w);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    padding-top: 3px;
+  }
+
+  .content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .summary {
+    font-size: 1.05rem;
+    line-height: 1.95;
+    color: var(--ink);
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin-bottom: 40px;
+  }
+
+  .exp-item {
+    margin-bottom: 16px;
+    display: flex;
+    gap: 24px;
+    align-items: baseline;
+  }
+
+  .exp-date {
+    flex: 0 0 150px;
+    font-size: .95rem;
+    color: var(--ink2);
+    letter-spacing: 0.02em;
+  }
+
+  .exp-info { flex: 1; }
+
+  .exp-company {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .exp-role {
+    font-size: 0.85rem;
+    color: var(--ink3);
+  }
+
+  .exp-desc {
+    font-size: 0.85rem;
+    color: var(--ink3);
+    margin-top: 2px;
+  }
+
+  .skill-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .skill-cat {
+    flex: 0 0 72px;
+    font-weight: 600;
+    color: var(--ink2);
+  }
+
+  .skill-items {
+    color: var(--ink2);
+  }
+
+  .narrative h3 {
+    font-size: 0.98rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    margin-top: 32px;
+    color: var(--ink);
+  }
+
+  .narrative h3:first-child {
+    margin-top: 0;
+  }
+
+  .narrative p {
+    font-size: 0.92rem;
+    color: var(--ink2);
+    margin-bottom: 10px;
+    line-height: 1.85;
+  }
+
+  .narrative ol {
+    padding-left: 1.4em;
+    margin-top: 8px;
+    margin-bottom: 16px;
+  }
+
+  .narrative ol li {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    margin-bottom: 5px;
+    color: var(--ink2);
+  }
+
+  .narrative ol li::marker {
+    color: var(--ink-faint);
+    font-size: 0.8rem;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--tag-border);
+    background: var(--tag-bg);
+    padding: 3px 10px;
+    margin-bottom: 10px;
+    margin-top: 28px;
+  }
+
+  .closing {
+    font-size: 0.92rem;
+    color: var(--ink2);
+    line-height: 1.85;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    margin-top: 8px;
+  }
+
+  .theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    background: var(--paper);
+    color: var(--ink3);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    z-index: 10;
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  html.light {
+    --ink: #1a1a1a;
+    --ink2: #3a3a3a;
+    --ink3: #777;
+    --ink-faint: #999;
+    --paper: #fafaf8;
+    --rule: #d4d0c8;
+    --accent: #8b4513;
+    --tag-bg: transparent;
+    --tag-border: #d4d0c8;
+  }
+
+  html.dark {
+    --ink: #ede9e4;
+    --ink2: #d5d0c9;
+    --ink3: #a8a29a;
+    --ink-faint: #8a8480;
+    --paper: #1a1917;
+    --rule: #3a3530;
+    --accent: #d4a06a;
+    --tag-bg: rgba(212, 160, 106, 0.08);
+    --tag-border: #504a42;
+  }
+
+  @media print {
+    html { font-size: 16px; }
+    body { background: white; color: #1a1a1a; }
+    .page { padding: 0; max-width: none; }
+    .theme-toggle { display: none; }
+    header { border-bottom-color: #1a1a1a; }
+    .label { color: #1a1a1a; }
+    .tag { color: #1a1a1a; border-color: #ccc; }
+    .exp-date, .exp-role, .contact { color: #666; }
+    .summary, .narrative p, .narrative ol li, .closing { color: #333; }
+  }
+
+  @media (max-width: 680px) {
+    .page { padding: 40px 20px 60px; }
+    header { flex-direction: column; gap: 8px; }
+    .contact { text-align: left; }
+    .row { flex-direction: column; gap: 8px; }
+    .label { flex: none; }
+    .exp-item { flex-direction: column; gap: 2px; }
+    .exp-date { flex: none; }
+  }
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="切換深淺色模式">
+  <span id="theme-icon">◑</span>
+</button>
+
+<div class="page">
+
+  <header>
+    <h1>黃文奇 Aaron Huang</h1>
+    <div class="contact">
+      <a href="https://pda.104.com.tw/profile/share/5gbhonF3A4gUzn1kI0p6aY5hie4tQJ6l" target="_blank" style="color: inherit; text-decoration: none;">104 履歷</a><br>
+      mo90196@gmail.com
+    </div>
+  </header>
+
+  <div class="row">
+    <div class="label">簡介</div>
+    <div class="content">
+      <p class="summary">具備十年以上前端與 Web 遊戲開發經驗。交付四十餘款遊戲，但更多時間花在讓其他人也能快速交付，設計共用架構、建立開發流程、帶新人從零到獨立。</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="row">
+    <div class="label">經歷</div>
+    <div class="content">
+      <div class="exp-item">
+        <div class="exp-date">2021/5 – 2026/3</div>
+        <div class="exp-info">
+          <div class="exp-company">京赫科技有限公司</div>
+          <div class="exp-role">遊戲前端工程師</div>
+          <div class="exp-desc">共用架構設計、跨部門流程建立、新人訓練</div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">2018/8 – 2021/4</div>
+        <div class="exp-info">
+          <div class="exp-company">鉑麟科技股份有限公司</div>
+          <div class="exp-role">遊戲前端工程師</div>
+          <div class="exp-desc">Cocos 遊戲開發</div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">2017/7 – 2018/8</div>
+        <div class="exp-info">
+          <div class="exp-company">騰宇電腦資訊國際有限公司</div>
+          <div class="exp-role">JavaScript 開發工程師</div>
+          <div class="exp-desc">Pixi.js 小遊戲開發</div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">2015/8 – 2017/1</div>
+        <div class="exp-info">
+          <div class="exp-company">寶成工業股份有限公司</div>
+          <div class="exp-role">程式設計師</div>
+          <div class="exp-desc">內部工具集 JavaScript 層開發與維護</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="row">
+    <div class="label">學歷</div>
+    <div class="content">
+      <div class="exp-item">
+        <div class="exp-date">2006/9 – 2010/6</div>
+        <div class="exp-info">
+          <div class="exp-company">私立靜宜大學</div>
+          <div class="exp-role">資訊工程學系</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="row">
+    <div class="label">技術</div>
+    <div class="content">
+      <div class="skill-row">
+        <div class="skill-cat">類別</div>
+        <div class="skill-items">項目</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">語言</div>
+        <div class="skill-items">TypeScript, JavaScript</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">遊戲引擎</div>
+        <div class="skill-items">Cocos Creator 2 / 3, Pixi.js</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">動畫</div>
+        <div class="skill-items">GSAP</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">工具</div>
+        <div class="skill-items">Git, Node.js, Rollup, Webpack, Shell Script</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">其他</div>
+        <div class="skill-items">Vue, RxJS</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="row">
+    <div class="label">自傳</div>
+    <div class="content narrative">
+      <p>具備十年以上前端與 Web 遊戲開發經驗。交付四十餘款遊戲，但更多時間花在讓其他人也能快速交付，設計共用架構、建立開發流程、帶新人從零到獨立。</p>
+
+      <h3>一、寶成</h3>
+      <p>維護公司內部工具集的 JavaScript 層，以 DB Schema 驅動前端畫面生成與驗證邏輯：</p>
+      <ol>
+        <li>以 TypeScript 定義檔規範對外 API，提供明確的型別提示</li>
+        <li>針對大量資料的表格渲染卡頓，重新設計渲染策略以改善操作流暢度</li>
+        <li>重構多層連動下拉選單等複雜元件的事件觸發機制</li>
+        <li>負責 QA、文件撰寫、開發者教育訓練與除錯支援</li>
+      </ol>
+
+      <h3>二、騰宇</h3>
+      <p>以 Rollup + Pixi.js + GSAP 開發十款單人小遊戲，涵蓋棋牌、猜拳、轉輪、跑燈及老虎機類型，於澳門 G2E 展覽中獲得熱門度排名第一。</p>
+
+      <h3>三、京赫</h3>
+      <p>以 Cocos Creator + TypeScript 開發 Web 遊戲，交付數款棋牌、三十餘款老虎機、六款捕魚機。專案量上來後，逐步從開發擴展到架構設計、跨部門流程與新人訓練。</p>
+
+      <div class="tag">共用架構與工具</div>
+      <ol>
+        <li>設計並維護老虎機與魚機兩套公版架構，老虎涵蓋滾輪機制、動畫流程與 UI 狀態管理，魚機涵蓋碰撞與資料流</li>
+        <li>完成 Cocos 2 升 Cocos 3 大版本升級及新版老虎機公版架構設計</li>
+        <li>開發美術字編輯器、Spine 預覽工具、多語系預覽工具，減少企劃、美術與前端的來回確認成本</li>
+        <li>將遊戲內說明頁從 Canvas 改寫為網頁版，解決部分語系文字換行錯誤，以資料驅動組件生成畫面，提升維護彈性</li>
+      </ol>
+
+      <div class="tag">專案管理與跨部門協作</div>
+      <ol>
+        <li>主導重建遊戲專案 Jira 工作項樣板，定義狀態流程、工作項關聯、主管檢查單與會議記錄規範，與各部門 PM 確認後逐步上線</li>
+        <li>擔任美術需求清單 PM，統一素材格式、尺寸與檔名規則，作為前端與企劃、美術之間的對接窗口</li>
+      </ol>
+
+      <div class="tag">新人訓練與團隊教學</div>
+      <p>先後帶過三位新人，其中一位從零基礎到能獨立承接完整專案：</p>
+      <ol>
+        <li>基礎課程：TypeScript、Git、Promise → 節點系統、動畫、碰撞、效能優化 → 完成簡單老虎機實作，每單元搭配練習題與現場示範錄影</li>
+        <li>進階課程：公版說明、Slot 生命週期、流程控制、UI 資料綁定系統</li>
+        <li>新人第一款專案由資深成員帶著走完整開發流程，確保實際上手後能銜接獨立作業</li>
+      </ol>
+
+      <h3>四、個人</h3>
+      <ol>
+        <li>自製 VS Code Extension：Claude Terminal 完成時通知、跨 Workspace 快速切換、鍵盤快捷鍵跳轉，降低多 Agent 並行時的注意力成本（<a href="https://github.com/aaronhg/claude-terminal-focus" target="_blank">GitHub</a>）</li>
+        <li>嘗試以 AI 輔助開發（Claude Code + cocos-mcp-server），將專案開發分為多層：模板複製與參數替換（全自動）、可配置化元件（半自動）、客製功能（與 AI 迭代協作），最後人工整合</li>
+      </ol>
+
+      <p class="closing">持續探索 AI 如何融入既有的團隊開發流程，降低重複工作的人力成本，把時間留給真正需要判斷的事。</p>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  if (html.classList.contains('dark')) {
+    html.classList.remove('dark');
+    html.classList.add('light');
+  } else if (html.classList.contains('light')) {
+    html.classList.remove('light');
+    html.classList.add('dark');
+  } else {
+    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    html.classList.add(isDark ? 'light' : 'dark');
+  }
+}
+</script>
+
+</body>
+</html>
