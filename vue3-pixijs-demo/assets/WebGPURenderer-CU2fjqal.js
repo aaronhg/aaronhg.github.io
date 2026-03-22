@@ -1,0 +1,1 @@
+import"./colorToUniform-DUEp0NJG.js";import{f as e}from"./index-CwS_ClAq.js";export{e as WebGPURenderer};
